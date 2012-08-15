@@ -193,13 +193,16 @@ void parseKvpXml(VARIANT *vtVar, SFLHost_hid_counters *hid,
 	             char *hnamebuf, uint32_t hnamebufLen,
 				 char *osrelbuf, uint32_t osrelbufLen)
 {
+	if (V_VT(vtVar) != (VT_ARRAY | VT_BSTR)) {
+		return;
+	}
 	LONG lstart, lend;
 	LONG idx = -1;
 	HRESULT hr;
 	BSTR* pbstr;
-	SAFEARRAY *sa = V_ARRAY(vtVar); 
-	// Get the lower and upper bound
+	SAFEARRAY *sa = V_ARRAY(vtVar);
 
+	// Get the lower and upper bound
 	hr = SafeArrayGetLBound(sa, 1, &lstart);
 	if (FAILED(hr)) {
 		return;
