@@ -101,6 +101,7 @@ void readWMISwitchPorts(HSP *sp)
 			char portGuid[FORMATTED_GUID_LEN+1];
 			guidToString(guidString, (UCHAR *)portGuid, FORMATTED_GUID_LEN);
 			myLog(LOG_INFO, "readWMISwitchPorts: portGuid=%s", portGuid);
+			my_free(guidString);
 			vAdaptor = adaptorListGet(sp->vAdaptorList, portGuid);
 		}
 		if (vAdaptor != NULL) {
